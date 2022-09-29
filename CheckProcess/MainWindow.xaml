@@ -18,37 +18,36 @@
         Closing="Window_Closing">
 
     <Window.Resources>
-        <Style TargetType="{x:Type DataGridRow}">
+        <!--<Style TargetType="{x:Type DataGridRow}">
             <Setter Property="Height" Value="30"/>
-            <!--<Setter Property="HorizontalContentAlignment" Value="Center" />-->
+            --><!--<Setter Property="HorizontalContentAlignment" Value="Center" />--><!--
         </Style>
         <Style TargetType="{x:Type DataGridCell}">
             <Setter Property="Height" Value="25"/>
-            <!--<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch" />-->
-        </Style>
-        <Style TargetType="{x:Type Label}" x:Key="RoundLabel">
+            --><!--<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch" />--><!--
+        </Style>-->
+        <!--<Style TargetType="{x:Type Label}" x:Key="RoundLabel">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Style.Resources>-->
+        <!--</Style>-->
+        <!--<Style TargetType="{x:Type DockPanel}" x:Key="RoundDock">
             <Style.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10" />
                 </Style>
             </Style.Resources>
-        </Style>
-        <Style TargetType="{x:Type DockPanel}" x:Key="RoundDock">
+        </Style>-->
+        <!--<Style TargetType="{x:Type Button}" x:Key="RoundButton">
             <Style.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10" />
                 </Style>
             </Style.Resources>
-        </Style>
-        <Style TargetType="{x:Type Button}" x:Key="RoundButton">
-            <Style.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="10" />
-                </Style>
-            </Style.Resources>
-        </Style>
-
+        </Style>-->
 
         <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
             <Border Background="{TemplateBinding Background}" 
@@ -77,6 +76,7 @@
         <Grid Background="White" MouseDown="Grid_MouseDown"  Margin="0,-2,0,2">
 
             <DataGrid x:Name="DgPanelInfo"
+                Style="{StaticResource DgStyle}"
                 HorizontalAlignment="Left" 
                 Height="702" 
                 Margin="27,155,0,0" 
@@ -144,7 +144,7 @@
                 Background="#263238"
                 Style="{DynamicResource RoundLabel}"
                 Foreground="WhiteSmoke" 
-                Width="180"
+                Width="0"
                 Margin="0,0,1106,0" Height="886" VerticalAlignment="Top"/>
 
 

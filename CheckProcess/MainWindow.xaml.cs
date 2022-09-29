@@ -126,7 +126,7 @@ namespace CheckProcess
             }
         }
 
-        void CleanUp() 
+        void CleanDg() 
         {
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
@@ -303,7 +303,7 @@ namespace CheckProcess
 
         void MainFunction()
         {          
-            CleanUp();
+            CleanDg();
            
 
             if(Globals.MODE == "TabPanelMode") Globals.DT_LANE1 = StaticFunctions.VerifyCheckPointPanel(Globals.SERIAL_NUMBER1);
