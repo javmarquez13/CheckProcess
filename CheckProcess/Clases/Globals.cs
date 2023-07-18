@@ -247,6 +247,16 @@ namespace CheckProcess
             }
         }
 
+
+        public static string USING_BY
+        {
+            get
+            {
+                return ConfigFiles.reader("CHECK PROCESS", "USING_BY", CONFIG_FILE);
+            }
+        }
+
+
         private static string _STEPS_MISSING1;
         private static string _STEPS_MISSING2;
         public static string STEPS_MISSING1
@@ -308,6 +318,15 @@ namespace CheckProcess
                 return ConfigFiles.reader("CHECK PROCESS", "STEP_TO_CHECK", CONFIG_FILE);
             }
         }
+
+        public static string STEP_TO_SEND
+        {
+            get
+            {
+                return ConfigFiles.reader("CHECK PROCESS", "STEP_TO_SEND", CONFIG_FILE);
+            }
+        }
+
 
         private static DataTable _DT_LANE1;
         private static DataTable _DT_LANE2;

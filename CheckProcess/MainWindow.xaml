@@ -18,14 +18,32 @@
         Closing="Window_Closing">
 
     <Window.Resources>
+
+        <ContextMenu x:Key="contextMenu">
+            <MenuItem Header="MES History"
+                      MouseRightButtonDown="MenuItem_MouseRightButtonDown"
+                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}"/>
+            <!--<MenuItem Header="Edit"
+                      Click="Edit_OnClick"
+                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}" />
+            <MenuItem Header="Delete"
+                      Click="Delete_OnClick"
+                      CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}"/>-->
+        </ContextMenu>
+
+
         <!--<Style TargetType="{x:Type DataGridRow}">
             <Setter Property="Height" Value="30"/>
-            --><!--<Setter Property="HorizontalContentAlignment" Value="Center" />--><!--
+            -->
+        <!--<Setter Property="HorizontalContentAlignment" Value="Center" />-->
+        <!--
         </Style>
         <Style TargetType="{x:Type DataGridCell}">
             <Setter Property="Height" Value="25"/>
-            --><!--<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch" />--><!--
+            -->
+        <!--<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch" />-->
+        <!--
         </Style>-->
         <!--<Style TargetType="{x:Type Label}" x:Key="RoundLabel">
             <Style.Resources>
@@ -81,7 +99,7 @@
                 Height="702" 
                 Margin="27,155,0,0" 
                 VerticalAlignment="Top" 
-                Width="530"
+                Width="627"
                 LoadingRow="DgPanelInfo_LoadingRow"/>
 
             <Label x:Name="lblInformation"
@@ -184,11 +202,11 @@
                 Click="btnMinimize_Click" Grid.Column="1"/>
             <Label Content="" HorizontalAlignment="Left" Margin="854,155,0,0" VerticalAlignment="Top"/>
 
-            
-    
-            
-            
-            
+
+
+
+
+
             <TextBox x:Name="txtScanning"
                      Text="Scan board here..."
                      VerticalContentAlignment="Center"
@@ -221,7 +239,7 @@
 
 
 
-            <TabControl x:Name="TabMenu" Margin="577,210,10,8" BorderBrush="Gainsboro" SelectionChanged="TabMenu_SelectionChanged">
+            <TabControl x:Name="TabMenu" Margin="668,210,10,8" BorderBrush="Gainsboro" SelectionChanged="TabMenu_SelectionChanged">
                 <TabControl.Resources>
                     <Style TargetType="TabItem">
                         <Setter Property="Template">
@@ -263,7 +281,7 @@
                                Background="#263250"
                                Foreground="White" Margin="164,17,127,562"/>
 
-                        <Rectangle Margin="19,63,0,0" VerticalAlignment="Top" Height="537" HorizontalAlignment="Left" Width="651">
+                        <Rectangle Margin="-32,63,0,0" VerticalAlignment="Top" Height="537" HorizontalAlignment="Left" Width="652">
                             <Rectangle.Fill>
                                 <ImageBrush ImageSource="Resources\DexcomBoard.jpg"/>
                             </Rectangle.Fill>
@@ -280,7 +298,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="61,126,0,0" 
+                               Foreground="White" Margin="19,126,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
@@ -295,7 +313,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="182,126,0,0" 
+                               Foreground="White" Margin="140,126,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
@@ -310,7 +328,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="302,126,0,0" 
+                               Foreground="White" Margin="260,126,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
@@ -325,7 +343,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="420,128,0,0" 
+                               Foreground="White" Margin="378,128,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
@@ -340,7 +358,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="536,128,0,0" 
+                               Foreground="White" Margin="494,128,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
@@ -355,7 +373,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="61,282,0,0" 
+                               Foreground="White" Margin="13,282,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
@@ -370,7 +388,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="182,282,0,0" 
+                               Foreground="White" Margin="134,282,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
@@ -385,7 +403,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="302,282,0,0" 
+                               Foreground="White" Margin="254,282,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
@@ -400,7 +418,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="420,280,0,0" 
+                               Foreground="White" Margin="378,280,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
@@ -415,7 +433,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="542,282,0,0" 
+                               Foreground="White" Margin="500,282,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
@@ -430,7 +448,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="61,446,0,0"
+                               Foreground="White" Margin="13,446,0,0"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
                         <Label x:Name="lblSN12"
@@ -444,7 +462,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="182,444,0,0" 
+                               Foreground="White" Margin="134,444,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
@@ -459,7 +477,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="302,444,0,0" 
+                               Foreground="White" Margin="260,444,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
@@ -474,7 +492,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="420,446,0,0" 
+                               Foreground="White" Margin="372,446,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
 
@@ -489,7 +507,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                Background="Gray"
-                               Foreground="White" Margin="542,444,0,0" 
+                               Foreground="White" Margin="494,444,0,0" 
                                RenderTransformOrigin="0.341,1.471"
                                MouseDoubleClick="lblSN_MouseDoubleClick"/>
                     </Grid>

@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PalletLinkDLL;
 
 namespace CheckProcess
 {
@@ -74,11 +75,13 @@ namespace CheckProcess
             return _dtResult;
         }
 
-
         public static DataTable VerifyCheckPointPanel(string SerialNumber)
         {
             DataTable _dtResult = new DataTable();
             DataTable _dtPanel = new DataTable();
+
+            DataTable EventsByLoop_2 = new DataTable();
+            bool _Had2Loops = false;
 
             DataSet _dsQuery = new MES.Service().SelectBySerialNumber(SerialNumber);
             int _CustomerID = Convert.ToInt32(_dsQuery.Tables[0].Rows[0][2]);
@@ -90,6 +93,7 @@ namespace CheckProcess
             _dtResult = _dtPanel.Copy();
             _dtResult.Columns.Add("History");
             _dtResult.Columns.Add("Status");
+            _dtResult.Columns.Add("DoubleLoop");
 
             DataTable EventsByStepMatrix = new DataTable();
 
@@ -152,9 +156,25 @@ namespace CheckProcess
                                                      .Select(b => b["History"] = StepToCheck)
                                                     .ToList();
 
+
+
+
                         _dtResult.AsEnumerable().Where(row => row.Field<string>("SerialNumber") == _dr[3].ToString())
                                  .Select(b => b["Status"] = "Fail")
                                 .ToList();
+
+
+                        EventsByLoop_2 = _dsQuery.Tables[0].AsEnumerable()
+                                                 .Where(r => r.Field<string>("TestType") == "TEST" &&
+                                                             r.Field<string>("Test_Process") == "FVT / PBTS" &&
+                                                             r.Field<string>("TestStatus") == "Fail" &&
+                                                             r.Field<string>("EquipmentRouteName") == "Loop 2")
+                                                 .CopyToDataTable();
+
+                        _dtResult.AsEnumerable().Where(row => row.Field<string>("SerialNumber") == _dr[3].ToString())
+                                                  .Select(b => b["DoubleLoop"] = "Loop 2")
+                                                 .ToList();
+
                         break;
                     }
                     catch (Exception) { }
@@ -310,7 +330,46 @@ namespace CheckProcess
         }
 
 
-        public static void NotUsed() 
+        public static void SendStepToMES(string SerialNumber, string StepToSend) 
+        {
+            string _result = string.Empty;
+            string horaInicial = DateTime.Now.ToString("MM/dd/yyyy h:mm:ss tt");
+            string horaFinal = DateTime.Now.ToString("MM/dd/yyyy h:mm:ss tt");
+
+            string archivoMES = string.Format("S{0}\r\nC{1}\r\nN{2}\r\nOoperador\r\np{3}\r\nP{4}\r\nTP\r\n[{5}\r\n]{6}\r\n", SerialNumber, "DEXCOM", "WM-AQST200-09", 12, StepToSend, horaInicial, horaFinal);
+        
+            _result = new PalletLinkDLL.PalletLinkSN().fnSendToMES(archivoMES, SerialNumber);  
+        }
+
+
+        public static DataTable CombineDataTables(List<DataTable> dataTables) 
+        {
+            DataTable _dtResult = new DataTable();
+            _dtResult.Columns.Add("SerialNumber");
+            _dtResult.Columns.Add("Mapping");
+            _dtResult.Columns.Add("History");
+            _dtResult.Columns.Add("Status");
+            _dtResult.Columns.Add("DoubleLoop");
+
+            int _Mapping = 0;
+
+            foreach (DataTable table in dataTables) 
+            {
+                foreach (DataRow dr in table.Rows)
+                {
+                    _Mapping++;
+                    _dtResult.Rows.Add(dr[0], _Mapping, dr[2], dr[3], dr[4]);
+                }
+            }
+
+            return _dtResult;
+        }
+
+
+
+
+
+        public static void NUsed() 
         {
 
             DataSet _dsQuery = new MES.Service().SelectBySerialNumber(Globals.SERIAL_NUMBER1);
